@@ -41,62 +41,24 @@ class Bullet(GameSprite):
         if self.rect.y <= -50:
             self.kill()
 
-class Enemy(GameSprite):
-    def __init__(self, player_image, player_x, player_y, player_speed=3):
-        super().__init__(player_image, player_x, player_y, player_speed)
-        self.border_up = -50
-        self.border_down = 750
-    
-    def update(self):
-        global lost
-        global text_lost_ufos
 
-        self.rect.y += self.speed
-        if self.rect.y >= self.border_down:
-            self.speed = rndm.randint(1, 3)
-            self.rect.y = -50
-            self.rect.x = rndm.randint(30, 620)
-            lost += 1
-        text_lost_ufos = font1.render(
-            'Пропущено ' + str(lost), 1, (255, 255, 255)
-        )
-
-    def draw_wall(self):
-        window.blit(self.image, (self.rect.x, self.rect.y))
-
-
-class Meteorituzzzzzzz(GameSprite):
-    def __init__(self, player_image, player_x, player_y, player_speed=3):
-        super().__init__(player_image, player_x, player_y, player_speed)
-        self.border_up = -50
-        self.border_down = 850
-    
-    def update(self):
-        self.rect.y += self.speed
-        if self.rect.y >= self.border_down:
-            self.speed = rndm.randint(1, 3)
-            self.rect.y = -50
-            self.rect.x = rndm.randint(30, 620)
-
-    def draw_wall(self):
-        window.blit(self.image, (self.rect.x, self.rect.y))
-
-
-lose_replic = ['Игрок был уничтожен', 'Игрок был низложен']
-win_r3pl1c = ['Игрок ecть победист!']
+right_replic = 'Игрок СПРАВА пабидиль!'
+left_replic = 'Игрок СЛЕВА пабидиль!'
 
 
 lost = 0
+
+l_border_up = (50, 50)
+l_border_down = (50, 500)
+
+r_border_up =(650, 500)
+r_border_down = (650, 50)
 
 ded = 0
 
 # kick.play()
 
 FPS = 120
-
-fps = FPS*2
-
-fire_time = FPS/10
 
 font1 = font.SysFont('Arial', 36)
 
